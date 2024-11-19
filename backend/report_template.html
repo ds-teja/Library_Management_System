@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Activity Report for {{ current_month }} {{ current_year }}</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Table of Contents</h1>
+    <ul>
+        <li>Summary Overview</li>
+        <li>Users Activity</li>
+        <li>Sections Activity</li>
+        <li>Books Activity</li>
+    </ul>
+
+    <h1>1. Summary Overview for {{ current_month }} {{ current_year }}</h1>
+    <p>New Users Joined / Total Users: {{ new_users }} / {{ total_users }}</p>
+    <p>New Sections Added / Total Sections: {{ new_sections }} / {{ total_sections }}</p>
+    <p>New e-Books Added / Total e-Books: {{ new_ebooks }} / {{ total_ebooks }}</p>
+    <br>
+
+    <h1>2. Users Activity</h1>
+    <h2>Most Active users Report for {{ current_month }} {{ current_year }}</h2>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Total Requests</th>
+            <th>Declined</th>
+            <th>Withdrawn</th>
+            <th>Approved</th>
+            <th>Returned on Time</th>
+            <th>Overdue</th>
+        </tr>
+        {% for user in most_active_users %}
+        <tr>
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.total_requests }}</td>
+            <td>{{ user.declined_requests }}</td>
+            <td>{{ user.withdrawn_requests }}</td>
+            <td>{{ user.approved_requests }}</td>
+            <td>{{ user.returned_on_time_requests }}</td>
+            <td>{{ user.overdue_requests }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h1>3. Sections Activity</h1>
+    <h2>Popular Sections for {{ current_month }} {{ current_year }}</h2>
+    <table>
+        <tr>
+            <th>Section Name</th>
+            <th>Total Requests</th>
+            <th>Declined</th>
+            <th>Withdrawn</th>
+            <th>Approved</th>
+            <th>Returned on Time</th>
+            <th>Overdue</th>
+        </tr>
+        {% for section in popular_sections %}
+        <tr>
+            <td>{{ section.section_name }}</td>
+            <td>{{ section.total_requests }}</td>
+            <td>{{ section.declined_requests }}</td>
+            <td>{{ section.withdrawn_requests }}</td>
+            <td>{{ section.approved_requests }}</td>
+            <td>{{ section.returned_on_time_requests }}</td>
+            <td>{{ section.overdue_requests }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>4. Books Activity</h1>
+    <h2>Popular Books for {{ current_month }} {{ current_year }}</h2>
+    <table>
+        <tr>
+            <th>Book Name</th>
+            <th>Section Name</th>
+            <th>Total Requests</th>
+            <th>Declined</th>
+            <th>Withdrawn</th>
+            <th>Approved</th>
+            <th>Returned on Time</th>
+            <th>Overdue</th>
+        </tr>
+        {% for book in popular_books %}
+        <tr>
+            <td>{{ book.book_name }}</td>
+            <td>{{ book.section_name }}</td>
+            <td>{{ book.total_requests }}</td>
+            <td>{{ book.declined_requests }}</td>
+            <td>{{ book.withdrawn_requests }}</td>
+            <td>{{ book.approved_requests }}</td>
+            <td>{{ book.returned_on_time_requests }}</td>
+            <td>{{ book.overdue_requests }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
